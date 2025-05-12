@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourToon</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icons a {
+      margin-left: 16px;
+      color: #fff;
+      font-size: 1.6rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-icons a:hover {
+      color: #ccc;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #444;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .comic-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 32px;
+      padding: 24px;
+    }
+
+    .comic-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .comic-card:hover {
+      transform: scale(1.06);
+    }
+
+    .comic-card img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .comic-card h3 {
+      margin: 0;
+      padding: 16px;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #333;
+      color: #fff;
+      margin-top: 30px;
+    }
+
+    .social-links a {
+      color: #fff;
+      margin: 0 12px;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      color: #ccc;
+    }
+
+    .details-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      z-index: 999;
+    }
+
+    .details-content {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .details-content h2 {
+      margin-top: 0;
+    }
+
+    .details-content button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      background: #333;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .details-content button:hover {
+      background: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>YourToon.</h1>
+    <div class="nav-icons">
+      <a href="#" title="Search"><i class="fas fa-search"></i></a>
+      <a href="#" title="Profile"><i class="fas fa-user"></i></a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Latest Comics</a>
+    <a href="#">Genres</a>
+    <a href="#">About</a>
+  </nav>
+
+  <div class="comic-gallery" id="gallery">
+    <!-- Comic cards populated by JavaScript -->
+  </div>
+
+  <div class="details-overlay" id="details">
+    <div class="details-content">
+      <h2 id="details-title"></h2>
+      <p id="details-desc"></p>
+      <button onclick="closeDetails()">Read Now</button>
+    </div>
+  </div>
+
+  <script>
+    const comics = [
+      { title: 'Her Bucket List', img: 'manga 1 .jpg', desc: 'Rari cha entire world falls apart when her boyfriend dies. Overwhelmed with the pain of losing the love of her life, she decides to go through the bucket list they made together before joining him in death.'},
+      { title: 'Solo Leveling', img: 'manga2.jpg', desc: ' After being brutally slaughtered by monsters in a high-ranking dungeon, Jinwoo came back with the System, a program only he could see, that’s leveling him up in every way. Now, he’s inspired to discover the secrets behind his powers and the dungeon that spawned them.' },
+      { title: 'Spy x Family', img: 'manga3.jpg', desc: ' World peace is at stake and secret agent Twilight must undergo his most difficult mission yet—pretend to be a family man. Posing as a loving husband and father, he’ll infiltrate an elite school to get close to a high-profile politician. He has the perfect cover, except his wife’s a deadly assassin and neither knows each other’s identity. But someone does, his adopted daughter who’s a telepath!' },
+      { title: 'The Millionare Detective Balance : Unlimited', img: 'mang4.jpg', desc: 'Daisuke Kanbe, a man of extraordinary wealth, is assigned to the Modern Crime Prevention Headquarters as a detective. It is there that he gets partnered with Haru Katou, a humane detective who values justice above all. The two are polar opposites, and their morals clash time and time again. Haru despises Daisuke for using monetary wealth to solve cases, as he believes that money is not everything. They will have to combine their efforts, however, to solve the mysteries that are coming their way.'},
+      { title: 'The Apothecary Diaries', img: 'manga5.jpg', desc: 'Maomao lived a peaceful life with her apothecary father. Until one day, she’s sold as a lowly servant to the emperor’s palace. But she wasn’t meant for a compliant life among royalty. So when imperial heirs fall ill, she decides to step in and find a cure! This catches the eye of Jinshi, a handsome palace official who promotes her. Now, she’s making a name for herself solving medical mysteries!' },
+      { title: 'A Silent Voice', img: 'manga6.jpg', desc: 'A deaf girl, Shoko, is bullied by the popular Shoya. As Shoya continues to bully Shoko, the class turns its back on him. Shoko transfers and Shoya grows up as an outcast. Alone and depressed, the regretful Shoya finds Shoko to make amends.' },
+      { title: 'Dandadan', img: 'manga7.jpg', desc: 'When high schooler Momo, from a family of spirit mediums, first meets her classmate Okarun, an occult geek, they argue—Momo believes in ghosts but denies aliens, and Okarun believes in aliens but denies ghosts. When it turns out both phenomena are real, Momo awakens a hidden power and Okarun gains the power of a curse. Together, they must challenge the paranormal forces threatening their world' },
+      { title: 'Uzamaki', img: 'manga8.jpg', desc: 'Plot. Uzumaki follows a high-school student, Kirie Goshima ; her boyfriend, Shuichi Saito ; and the citizens of the small, quiet Japanese town of Kurouzu-cho , which is enveloped by supernatural events involving spirals.' },
+      {title: 'Relife', img: 'manga9.jpg', desc: 'Arata Kaizaki (27) quit the job he landed after graduation in only three months. His life did not go well after that. Now his parents are threatening to stop sending money, and want him to come back to the country. He has no friend or girlfriend to share his troubles with...as he hits rock bottom a strange man named Ryo Yoake appears. Yoake invites Kaizaki to join a societal rehabilitation program for NEETs called ReLife. This program uses a mysterious drug to make him look younger, and sends him back to high school for a year...' },
+      { title: 'Plastic Memories', img: 'manga10.jpg', desc: 'After failing his college entrance exams, 18 year-old Tsukasa Mizugaki is offered a position at the renowned SAI Corporation due to his father’s connections. SAI Corporation is known for its production and management of androids that possessed human emotions called Giftia.Tsukasa’s position is in the terminal service department where the main job is to recover Giftias that are close to their expiration, a graveyard department in every sense. To make matters worse, Tsukasa is ordered to work with Isla, a female Giftia who is never given any responsibility other than serving tea to co-workers.' },
+      { title: 'Death Note', img: 'manga11.jpg', desc: 'Light Yagami is an ace student with great prospects and he"s bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami death god.' },
+      { title: 'Berserk', img: 'manga12.jpg', desc: 'Spurred by the flame raging in his heart,the Black Swordsman Guts continues his seemingly endless quest for revenge.Standing in his path are heinous outlaws, delusional evil spirits,and a devout child of god.Even as it chips away at his life, Guts continues to fight his enemies, who wield repulsive and inhumane power, with nary but his body and sword—his strength as a human.What lies at the end of his travels? The answer is shrouded in the "night."' }
+];
+
+    const gallery = document.getElementById('gallery');
+    const detailsOverlay = document.getElementById('details');
+    const detailsTitle = document.getElementById('details-title');
+    const detailsDesc = document.getElementById('details-desc');
+
+    comics.forEach((comic, index) => {
+      const card = document.createElement('div');
+      card.className = 'comic-card';
+      card.innerHTML = `
+        <img src="${comic.img}" alt="${comic.title}">
+        <h3>${comic.title}</h3>
+      `;
+      card.onclick = () => showDetails(index);
+      gallery.appendChild(card);
+    });
+
+    function showDetails(index) {
+      detailsTitle.textContent = comics[index].title;
+      detailsDesc.textContent = comics[index].desc;
+      detailsOverlay.style.visibility = 'visible';
+    }
+
+    function closeDetails() {
+      detailsOverlay.style.visibility = 'hidden';
+    }
+  </script>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://instagram.com/yourhandle" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width:24px;height:24px;">
+      </a>
+      <a href="https://twitter.com/yourhandle" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" alt="X" style="width:24px;height:24px;">
+      </a>
+    </div>
+    <p style="margin-top: 10px; font-size: 0.95rem; color: #ccc;">Thank you for visiting!</p>
+    <p>&copy; 2025 YourToon. All rights reserved.</p>
+  </footer>
+</body>
+</html>
