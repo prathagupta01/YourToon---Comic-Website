@@ -14,6 +14,17 @@ Cross-Device Compatibility: Built using mobile-first design principles to cater 
 Frontend: HTML5, CSS3, JavaScript.<br>
 Styling: Modern CSS (Flexbox/Grid) for responsive layouts.<br>
 Tools: Version control managed via Git and GitHub.<br>
+ 
+## Website Interface
+Here is the visual roadmap of the platform:
+
+### Home Page
+![Home Page Interface](interfacedesign/homepage.png)
+
+![AI Analysis Grid](interfacedesign/homepg.png)
+
+### Read Now Navigation
+![Saved Opportunities](interfacedesign/navigation.png)
 
 ## 📂 Project Structure
 🔧 Installation & Setup<br>

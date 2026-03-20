@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourToon</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <header>
+    <h1>YourToon.</h1>
+    <div class="nav-icons">
+      <a href="#" title="Search"><i class="fas fa-search"></i></a>
+      <a href="#" title="Profile"><i class="fas fa-user"></i></a>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Latest Comics</a>
+    <a href="#">Genres</a>
+    <a href="#">About</a>
+  </nav>
+
+  <div class="comic-gallery" id="gallery">
+    <!-- Comic cards populated by JavaScript -->
+  </div>
+
+  <div class="details-overlay" id="details">
+    <div class="details-content">
+      <h2 id="details-title"></h2>
+      <p id="details-desc"></p>
+      <button onclick="closeDetails()">Read Now</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+  <footer>
+    <div class="social-links">
+      <a href="https://instagram.com/yourhandle" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width:24px;height:24px;">
+      </a>
+      <a href="https://twitter.com/yourhandle" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" alt="X" style="width:24px;height:24px;">
+      </a>
+    </div>
+    <p style="margin-top: 10px; font-size: 0.95rem; color: #ccc;">Thank you for visiting!</p>
+    <p>&copy; 2025 YourToon. All rights reserved.</p>
+  </footer>
+</body>
+</html>
